@@ -1,4 +1,4 @@
-# RTCclock_8x32leds-
+# RTCclock_8x32leds
 RTC clock on 8x32 adressable led display using Wemos D1 board (ESP8266)
 
 #define LED_PIN 12      // GPIO12= D6 for matrix pin
