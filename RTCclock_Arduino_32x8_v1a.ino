@@ -269,19 +269,21 @@ matrix.setPixelColor(culsec1, matrix.Color(0, 150, 150));
 matrix.show();
  } 
  aratadata = 0; 
-//  culoare++;
-//  if (culoare > 6) culoare = 0;
+  culoare++;
+  if (culoare > 6) culoare = 0;
 //matrix.show();  
 }
 else
 //if (secundar < 35)
 {
+/*
 if (schimbare == 0)
     {
     culoare++;
     if (culoare > 6) culoare = 0;
     schimbare = 1;
     }
+*/
 matrix.fillScreen(0);
 matrix.setTextColor(colors[culoare]);
 matrix.setCursor(1, 0);
