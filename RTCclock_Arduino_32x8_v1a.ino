@@ -1,8 +1,8 @@
 /* original design by niq_ro: https://github.com/tehniq3/
  * RTC clock v.0.a - added RTC (DS3231/DS1307)
  * v.0.b - added thermometer with DS18B20 sensor  
- * v.1 - added animation for temperatura as at https://github.com/tehniq3/NTP_8x32leds2/blob/main/NTPclock_8x32_v2_1.ino
- * v.1.a - added moving point as seconds (lower line/row)
+ * v.1 - added animation for temperature as at https://github.com/tehniq3/NTP_8x32leds2/blob/main/NTPclock_8x32_v2_1.ino
+ *v.1.a - added moving point fosr seconds
 */
 
 #include <OneWire.h>
@@ -93,11 +93,6 @@ int te0, te1, te2;
 int ltempe;
 byte aratadata = 1;
 
-const int secpl[] = {  7,  8,  23, 24, 39, 40, 55, 56, 71, 72,
-                      87, 88, 103,104,119,120,135,136,151,152,
-                     167,168,183,184,199,200,215,216,231,232}; 
-byte culsec = 0;
-byte culsec1 = 0;
 
 void setup() {
   Serial.begin(115200);
@@ -204,13 +199,13 @@ Serial.print("/");
 Serial.print(an);
 */
 Serial.println(" -");
-/*
+
 if ((secundar == 0) or (secundar == 55))
    {
    schimbare = 0;
    delay(600);
    }
-*/
+
 
 if ((secundar > 35) and (aratadata == 1))
 {
@@ -252,11 +247,8 @@ x    = matrix.width();
   matrix.fillScreen(0); 
   matrix.setCursor(x, 0);
   matrix.print(tempe);  
-  DateTime now = rtc.now();
-    secundar = now.second();
- secprint(secundar);
+  matrix.show();
   delay(100);
-
 //  Serial.println(x);
  }
  
@@ -286,16 +278,16 @@ matrix.print(ora%10);
       matrix.print(F(" "));
 matrix.print(minut/10);
 matrix.print(minut%10);
-secprint(secundar);
+
+//matrix.setPixelColor((secundar%60)*8-1, matrix.Color(0, 150, 0));
 matrix.show();
 }
+
 
 if (secundar == 57)
 {
   citiresenzor();
 }
-
-
 
 if (secundar == 0) aratadata = 1;
 delay(500);
@@ -336,7 +328,7 @@ if (tempC < 0.)
     te1 = te0/10;
     te2 = te0%10;    
 }
-
+/*
 void secprint(int secundar2)
 {
 culsec = secundar2%30;
@@ -350,3 +342,4 @@ matrix.setPixelColor(culsec1, matrix.Color(0, 150, 0));
 matrix.setPixelColor(culsec1, matrix.Color(150, 0, 150));  
 //matrix.show();
 }
+*/
