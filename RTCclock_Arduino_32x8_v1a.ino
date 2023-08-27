@@ -2,7 +2,7 @@
  * RTC clock v.0.a - added RTC (DS3231/DS1307)
  * v.0.b - added thermometer with DS18B20 sensor  
  * v.1 - added animation for temperature as at https://github.com/tehniq3/NTP_8x32leds2/blob/main/NTPclock_8x32_v2_1.ino
- *v.1.a - added moving point fosr seconds
+ * v.1.a - moving points
 */
 
 #include <OneWire.h>
@@ -93,6 +93,11 @@ int te0, te1, te2;
 int ltempe;
 byte aratadata = 1;
 
+const int secpl[] = {  7,  8,  23, 24, 39, 40, 55, 56, 71, 72,
+                      87, 88, 103,104,119,120,135,136,151,152,
+                     167,168,183,184,199,200,215,216,231,232}; 
+byte culsec = 0;
+byte culsec1 = 0;
 
 void setup() {
   Serial.begin(115200);
@@ -152,12 +157,12 @@ Serial.println(an);
   matrix.setTextColor(colors[6]);
   matrix.fillScreen(0);
 matrix.setCursor(1, 0);
-matrix.print(F("v.1.0"));
+matrix.print(F("v.1.a"));
 //matrix.print(ceas);
 matrix.setPixelColor(255, matrix.Color(0, 150, 0));
 matrix.show();
 delay(2000);
-/*
+
 x    = matrix.width();
 matrix.fillScreen(0);
   for (x; x > -ltext ; x--)
@@ -169,7 +174,7 @@ matrix.fillScreen(0);
   delay(30);
  }
     delay(500);
-*/
+
 citiresenzor();
 }
 
@@ -233,7 +238,6 @@ if (semnminus == 0)
 matrix.print(F("C"));
 */
 
-
 String tempe ="temperature: ";
 if (tempC > 0) tempe = tempe + "+";
 tempe = tempe + te1 + ","+ te2;
@@ -247,15 +251,27 @@ x    = matrix.width();
   matrix.fillScreen(0); 
   matrix.setCursor(x, 0);
   matrix.print(tempe);  
-  matrix.show();
+//  matrix.show();
   delay(100);
 //  Serial.println(x);
- }
- 
+
+DateTime now = rtc.now();
+secundar = now.second();
+culsec = secundar%30;
+Serial.print(culsec);
+culsec1 = secpl[culsec];
+Serial.print(" -> ");
+Serial.println(culsec1);
+//if (secundar < 30)
+//matrix.setPixelColor(culsec1, matrix.Color(0, 150, 0));
+//else
+matrix.setPixelColor(culsec1, matrix.Color(0, 150, 150));  
+matrix.show();
+ } 
  aratadata = 0; 
-  culoare++;
-  if (culoare > 6) culoare = 0;
-matrix.show();  
+//  culoare++;
+//  if (culoare > 6) culoare = 0;
+//matrix.show();  
 }
 else
 //if (secundar < 35)
@@ -278,11 +294,19 @@ matrix.print(ora%10);
       matrix.print(F(" "));
 matrix.print(minut/10);
 matrix.print(minut%10);
-
+culsec = secundar%30;
+Serial.print(culsec);
+culsec1 = secpl[culsec];
+Serial.print(" -> ");
+Serial.println(culsec1);
+if (secundar < 30)
+matrix.setPixelColor(culsec1, matrix.Color(0, 150, 0));
+  else
+matrix.setPixelColor(culsec1, matrix.Color(150, 0, 150));  
+//matrix.show();
 //matrix.setPixelColor((secundar%60)*8-1, matrix.Color(0, 150, 0));
 matrix.show();
 }
-
 
 if (secundar == 57)
 {
@@ -328,18 +352,3 @@ if (tempC < 0.)
     te1 = te0/10;
     te2 = te0%10;    
 }
-/*
-void secprint(int secundar2)
-{
-culsec = secundar2%30;
-Serial.print(culsec);
-culsec1 = secpl[culsec];
-Serial.print(" -> ");
-Serial.println(culsec1);
-if (secundar2 < 30)
-matrix.setPixelColor(culsec1, matrix.Color(0, 150, 0));
-  else
-matrix.setPixelColor(culsec1, matrix.Color(150, 0, 150));  
-//matrix.show();
-}
-*/
