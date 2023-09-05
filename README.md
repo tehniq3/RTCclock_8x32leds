@@ -1,6 +1,8 @@
 # RTCclock_8x32leds
 
-article: https://nicuflorica.blogspot.com/2023/08/ceas-rtc-pe-afisaj-8x32-cu-leduri.html
+1st article: https://nicuflorica.blogspot.com/2023/08/ceas-rtc-pe-afisaj-8x32-cu-leduri.html
+
+2nd article: https://nicuflorica.blogspot.com/2023/09/ceas-rtc-pe-afisaj-8x32-cu-leduri.html
 
 ![1](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3hnRkptmj2VVM_KXKLmfmUNOeLJxmhDZ5YPAQQWboDrAF-Oxsn9ZaXtxjS2a9DbH1wmKnLcAejZZop3bsV21cdrjUxyZFzwm7LOG_XmqJp1vLsDTEfs1BXf8F3KdspvBpgLEIEu4NfgFOKSlIgbP5_1T-pgL8oRqQkTrBmqwWOQi22WIQodr6CugLncGR/w200-h150/RTC_clock_wemos_02.jpg)
 ![2](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgra965x99Z_ZjJ1gaxm1Ckmlc9ivdnlmhMc1ngj2AbjxnHwXZUqhLABxVqHOVMfs4I8tS-V5huOSun20NNkQMJJcxWvZQdvOFbij21fWaV1YsfuewBZ-qEZ48f_Hjq1s8zOAZDbWiDXzONMWVdQ48EFH6EjEFIULWgdU4ieHhyXbbE28NHegIQVsJn4P7R/w200-h150/RTC_clock_wemos_01.jpg)
